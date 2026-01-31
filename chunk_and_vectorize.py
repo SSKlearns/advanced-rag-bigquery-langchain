@@ -7,11 +7,14 @@ import time
 import os
 import tarfile
 import json
+from dotenv import load_dotenv
 
+load_dotenv()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-PROJECT_ID = "buildathon-485822"
-REGION = "us-central1"
+PROJECT_ID = os.getenv("PROJECT_ID")
+REGION = os.getenv("REGION")
+
 # Using the Wikipedia dataset
 WIKIPEDIA_URL = "https://github.com/LGDoor/Dump-of-Simple-English-Wiki/raw/refs/heads/master/corpus.tgz"
 CHUNK_SIZE = 400

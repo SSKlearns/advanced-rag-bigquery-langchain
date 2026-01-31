@@ -3,20 +3,21 @@ import logging
 from dotenv import load_dotenv
 from google.cloud import bigquery
 from langchain_google_vertexai import VertexAIEmbeddings
+from dotenv import load_dotenv
 
-# load_dotenv()
+load_dotenv()
 logging.basicConfig(level=logging.ERROR)
 
 # Config
-PROJECT_ID = "buildathon-485822"
-REGION = "us-central1"
-BQ_DATASET = "advanced_rag"
-BQ_TABLE = "wikipedia_vectors"
+PROJECT_ID = os.getenv("PROJECT_ID")
+REGION = os.getenv("REGION")
+BQ_DATASET = os.getenv("BQ_INSTANCE")
+BQ_TABLE = os.getenv("BQ_TABLE")
 
 def main():
     # Same embedding model used during indexing
     embeddings = VertexAIEmbeddings(
-        model_name="gemini-embedding-001",
+        model_name="text-embedding-004",
         project=PROJECT_ID,
         location=REGION
     )

@@ -14,10 +14,10 @@ from google.cloud import bigquery
 load_dotenv()
 logging.basicConfig(level=logging.ERROR)
 
-PROJECT_ID = "buildathon-485822"
-REGION = "us-central1"
-BQ_DATASET = "advanced_rag"
-BQ_TABLE = "wikipedia_vectors"
+PROJECT_ID = os.getenv("PROJECT_ID")
+REGION = os.getenv("REGION")
+BQ_DATASET = os.getenv("BQ_INSTANCE")
+BQ_TABLE = os.getenv("BQ_TABLE")
 
 # IMPORTANT: Target the recursive collection created in ingest_data.py
 RANKING_LOCATION = "global"
