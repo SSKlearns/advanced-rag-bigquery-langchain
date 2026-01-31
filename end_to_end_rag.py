@@ -22,7 +22,7 @@ def main():
 
     # 1. Setup Embeddings (Gemini Embedding 001)
     # We use this to vectorize the user's query to match our database.
-    embeddings = VertexAIEmbeddings(model_name="gemini-embedding-001", project=PROJECT_ID, location=REGION)
+    embeddings = VertexAIEmbeddings(model_name="text-embedding-004", project=PROJECT_ID, location=REGION)
 
     # 2. Connect to Vector Store
     bq_client = bigquery.Client(project=PROJECT_ID)
@@ -30,7 +30,7 @@ def main():
     # 3. Setup The 'Filter Funnel' (Retriever + Reranker)
     # Step A: Fast retrieval of top 10 similar documents
     base_retriever = BigQueryVectorRetriever( client=bq_client,
-                    table="buildathon-485822.advanced_rag.wikipedia_vectors",
+                    table=f"{PROJECT_ID}.{BQ_DATASET}.{BQ_TABLE}",
                     embeddings=embeddings,
                     strategy="character",
                     k=20

@@ -23,14 +23,14 @@ BQ_TABLE = os.getenv("BQ_TABLE")
 RANKING_LOCATION = "global"
 
 def main():
-    embeddings = VertexAIEmbeddings(model_name="gemini-embedding-001", project=PROJECT_ID, location=REGION)
+    embeddings = VertexAIEmbeddings(model_name="text-embedding-004", project=PROJECT_ID, location=REGION)
 
     bq_client = bigquery.Client(project=PROJECT_ID)
 
     # 1. Base Retriever (Vector Search) - Fetch top 10
     retriever = BigQueryVectorRetriever(
                     client=bq_client,
-                    table="buildathon-485822.advanced_rag.wikipedia_vectors",
+                    table=f"{PROJECT_ID}.{BQ_DATASET}.{BQ_TABLE}",
                     embeddings=embeddings,
                     strategy="recursive",
                     k=20

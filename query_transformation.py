@@ -32,13 +32,13 @@ def generate_step_back(query, llm):
 
 
 def main():
-    embeddings = VertexAIEmbeddings(model_name="gemini-embedding-001", project=PROJECT_ID, location=REGION)
+    embeddings = VertexAIEmbeddings(model_name="text-embedding-004", project=PROJECT_ID, location=REGION)
     llm = VertexAI(model_name="gemini-2.5-flash", project=PROJECT_ID, location=REGION, temperature=0.5)
     bq_client = bigquery.Client(project=PROJECT_ID)
 
     bq_retriever = BigQueryVectorRetriever(
                     client=bq_client,
-                    table="buildathon-485822.advanced_rag.wikipedia_vectors",
+                    table=f"{PROJECT_ID}.{BQ_DATASET}.{BQ_TABLE}",
                     embeddings=embeddings,
                     strategy="recursive",
                     k=20
