@@ -154,6 +154,18 @@ At this point, you have:
 
 ---
 
+## 6️⃣ Build your environment
+
+```bash
+git clone https://github.com/SSKlearns/advanced-rag-bigquery-langchain.git
+cd advanced-rag-bigquery-langchain/
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -r requirements.txt 
+```
+
+---
+
 ## Next Steps
 
 You can now:
